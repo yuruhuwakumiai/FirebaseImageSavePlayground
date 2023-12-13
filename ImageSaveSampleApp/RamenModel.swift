@@ -18,9 +18,13 @@ struct Ramen: Identifiable {
 }
 
 struct RamenModel {
-    private var firebaseStorageRepository = FirebaseStorageRepository()
+    private var firebaseStorageRepository = FirebaseStorageRepository() // インスタンスしてリポジトリを使用する
     private(set) var ramens: [Ramen] = []
+
+    // MARK: 変数はここに追加
+    var selectedImageData: Data?
     var isPresentingAddView = false
+    var showImagePicker = false
 
     // Firebase Storageに画像データをアップロードし、URLを取得する
     mutating func uploadImage(_ imageData: Data, completion: @escaping (Result<String, Error>) -> Void) {
