@@ -35,7 +35,7 @@ class RamenViewModel: ObservableObject {
 
     // ユーザーが選択した画像データを受け取り、Firebase Storageにアップロードする
     func uploadImage() {
-        guard let imageData = selectedImageData else { return }
+        guard let imageData = model.selectedImageData else { return }
 
         model.uploadImage(imageData) { [weak self] result in
             DispatchQueue.main.async {
@@ -45,7 +45,7 @@ class RamenViewModel: ObservableObject {
                 case .failure(let error):
                     self?.handleImageUploadFailure(error)
                 }
-                self?.selectedImageData = nil // アップロード後は選択された画像データをクリア
+                self?.model.selectedImageData = nil // アップロード後は選択された画像データをクリア
             }
         }
     }

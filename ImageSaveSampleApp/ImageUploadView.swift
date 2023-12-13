@@ -19,25 +19,19 @@ struct ImageUploadView: View {
             .navigationTitle("Ramen Tracker")
             .navigationBarItems(
                 leading: Button(action: {
-                    self.viewModel.showImagePicker = true
+                    viewModel.showImagePicker = true // 画像選択ピッカーを表示
                 }) {
                     Text("画像を選択")
                 },
                 trailing: Button(action: {
-                    viewModel.toggleAddRamenView()
+                    viewModel.toggleAddRamenView() // ラーメン追加ビューの表示を切り替える
                 }) {
                     Text(viewModel.isPresentingAddView ? "完了" : "追加")
                 }
             )
-            .sheet(isPresented: $viewModel.showImagePicker, onDismiss: uploadImage) {
+            .sheet(isPresented: $viewModel.showImagePicker) {
                 ImagePicker(imageData: $viewModel.selectedImageData)
             }
-        }
-    }
-
-    private func uploadImage() {
-        if let imageData = viewModel.selectedImageData {
-            viewModel.uploadImage(imageData)
         }
     }
 }
