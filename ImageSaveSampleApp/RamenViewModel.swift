@@ -26,7 +26,6 @@ class RamenViewModel: ObservableObject {
         set { model.showImagePicker = newValue }
     }
 
-
     // 選択された画像データにアクセスするためのコンピューテッドプロパティ
     var selectedImageData: Data? {
         get { model.selectedImageData }
@@ -34,6 +33,7 @@ class RamenViewModel: ObservableObject {
     }
 
     // ユーザーが選択した画像データを受け取り、Firebase Storageにアップロードする
+    // RamenViewModel内
     func uploadImage() {
         guard let imageData = model.selectedImageData else { return }
 
@@ -45,15 +45,14 @@ class RamenViewModel: ObservableObject {
                 case .failure(let error):
                     self?.handleImageUploadFailure(error)
                 }
-                self?.model.selectedImageData = nil // アップロード後は選択された画像データをクリア
+                self?.model.selectedImageData = nil
             }
         }
     }
 
-    // アップロード成功時の処理
     private func handleImageUploadSuccess(_ imageUrl: String) {
-        print("Image uploaded successfully: \(imageUrl)")
-        // ここで、ラーメンデータに画像URLを追加する処理を行うなどの追加アクションを行うことができます。
+        // ここでラーメンのデータに画像URLを追加
+        model.addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: imageUrl)
     }
 
     // アップロード失敗時の処理

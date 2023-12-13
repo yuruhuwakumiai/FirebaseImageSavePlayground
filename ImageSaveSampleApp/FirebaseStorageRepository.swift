@@ -8,8 +8,10 @@
 import SwiftUI
 import FirebaseStorage
 
+import FirebaseStorage
+
 class FirebaseStorageRepository {
-    private let storageRef = Storage.storage().reference()
+    private let storageRef = Storage.storage().reference(forURL: "gs://imagesavesampleapp.appspot.com")
 
     func uploadImageData(_ imageData: Data, completion: @escaping (Result<String, Error>) -> Void) {
         let imageId = UUID().uuidString
@@ -31,3 +33,4 @@ class FirebaseStorageRepository {
         }
     }
 }
+

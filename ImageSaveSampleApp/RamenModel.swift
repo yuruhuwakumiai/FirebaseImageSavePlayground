@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseStorage
 
-
 struct Ramen: Identifiable {
     var id = UUID() // 自動生成される一意のID
     var name: String

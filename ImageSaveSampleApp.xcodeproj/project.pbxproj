@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		094A83512B21A3DC00C66677 /* ImageSaveSampleAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A83502B21A3DC00C66677 /* ImageSaveSampleAppApp.swift */; };
-		094A83532B21A3DC00C66677 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 094A83522B21A3DC00C66677 /* ContentView.swift */; };
 		094A83552B21A3DE00C66677 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 094A83542B21A3DE00C66677 /* Assets.xcassets */; };
 		094A83582B21A3DE00C66677 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 094A83572B21A3DE00C66677 /* Preview Assets.xcassets */; };
 		094A83602B21FDD700C66677 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 094A835F2B21FDD700C66677 /* FirebaseDatabase */; };
@@ -23,7 +22,6 @@
 /* Begin PBXFileReference section */
 		094A834D2B21A3DC00C66677 /* ImageSaveSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageSaveSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		094A83502B21A3DC00C66677 /* ImageSaveSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaveSampleAppApp.swift; sourceTree = "<group>"; };
-		094A83522B21A3DC00C66677 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		094A83542B21A3DE00C66677 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		094A83572B21A3DE00C66677 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		09BAA3EE2B27E04700DC7DFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 				09BAA3F22B290F0C00DC7DFE /* RamenModel.swift */,
 				09BAA3F42B29137300DC7DFE /* RamenViewModel.swift */,
 				09BAA3F82B29CA1100DC7DFE /* ImageUploadView.swift */,
-				094A83522B21A3DC00C66677 /* ContentView.swift */,
 				094A83542B21A3DE00C66677 /* Assets.xcassets */,
 				09BAA3EE2B27E04700DC7DFE /* GoogleService-Info.plist */,
 				094A83562B21A3DE00C66677 /* Preview Content */,
@@ -164,7 +161,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				094A83532B21A3DC00C66677 /* ContentView.swift in Sources */,
 				09BAA3F12B290EB400DC7DFE /* FirebaseStorageRepository.swift in Sources */,
 				094A83512B21A3DC00C66677 /* ImageSaveSampleAppApp.swift in Sources */,
 				09BAA3F92B29CA1100DC7DFE /* ImageUploadView.swift in Sources */,
