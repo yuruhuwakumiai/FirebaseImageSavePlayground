@@ -9,6 +9,8 @@ import SwiftUI
 
 class RamenViewModel: ObservableObject {
     @Published private var model = RamenModel()
+    @Published var uploadedImages: [UploadedImage] = [] // アップロードされた画像のURLを保持する
+
 
     // ラーメンのリストをビューに提供する
     var ramens: [Ramen] {
@@ -41,11 +43,12 @@ class RamenViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let url):
-                    self?.handleImageUploadSuccess(url)
+                    // アップロードされた画像のURLをリストに追加
+                    self?.uploadedImages.append(UploadedImage(url: url))
                 case .failure(let error):
-                    self?.handleImageUploadFailure(error)
+                    // エラーハンドリング
+                    print("Image upload failed: \(error.localizedDescription)")
                 }
-                self?.model.selectedImageData = nil
             }
         }
     }

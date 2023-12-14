@@ -10,23 +10,36 @@ import FirebaseStorage
 
 struct ImageUploadView: View {
     @StateObject private var viewModel = RamenViewModel()
-    @State private var showPreview = false // 選択した画像のプレビュー表示
 
     var body: some View {
         NavigationView {
             VStack {
+                // 選択された画像のプレビュー表示
                 if let imageData = viewModel.selectedImageData, let image = UIImage(data: imageData) {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
                         .frame(height: 300)
-                    Button("画像をアップロードする") {
-                        viewModel.uploadImage()
-                    }
                 } else {
                     Text("画像を選択してください")
                 }
-                Spacer()
+
+                // 画像をアップロードするボタン
+                Button("画像をアップロードする") {
+                    viewModel.uploadImage()
+                }
+
+                // アップロードされた画像のリスト表示
+                List(viewModel.uploadedImages) { uploadedImage in
+                    if let url = URL(string: uploadedImage.url),
+                       let imageData = try? Data(contentsOf: url),
+                       let uiImage = UIImage(data: imageData) {
+                        Image(uiImage: uiImage)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 100)
+                    }
+                }
             }
             .navigationTitle("画像追加テストApp")
             .navigationBarItems(
@@ -42,6 +55,7 @@ struct ImageUploadView: View {
         }
     }
 }
+
 
 
 struct RamenRow: View {
