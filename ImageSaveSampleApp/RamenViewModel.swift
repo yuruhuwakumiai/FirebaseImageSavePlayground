@@ -26,7 +26,7 @@ class RamenViewModel: ObservableObject {
         set { model.showImagePicker = newValue }
     }
 
-    // 選択された画像データにアクセスするためのコンピューテッドプロパティ
+    // 選択された画像データにアクセスする
     var selectedImageData: Data? {
         get { model.selectedImageData }
         set { model.selectedImageData = newValue }
@@ -40,14 +40,22 @@ class RamenViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let url):
-                    // アップロードされた画像URLを持つ新しいRamenインスタンスを作成
-                    self?.addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
+                    self?.addRamenWithImage(url: url)
                 case .failure(let error):
-                    print("Image upload failed: \(error.localizedDescription)")
+                    self?.handleError(error)
                 }
             }
         }
     }
+
+    private func addRamenWithImage(url: String) {
+        addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
+    }
+
+    private func handleError(_ error: Error) {
+        // エラー処理のロジック
+    }
+
 
     func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
         model.addRamen(name: name, shop: shop, rating: rating, imageUrl: imageUrl)

@@ -12,7 +12,7 @@ struct ImageUploadView: View {
     @StateObject private var viewModel = RamenViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 // 選択された画像のプレビュー
                 if let imageData = viewModel.selectedImageData, let image = UIImage(data: imageData) {
