@@ -14,7 +14,7 @@ struct ImageUploadView: View {
     var body: some View {
         NavigationView {
             VStack {
-                // 選択された画像のプレビュー表示
+                // 選択された画像のプレビュー
                 if let imageData = viewModel.selectedImageData, let image = UIImage(data: imageData) {
                     Image(uiImage: image)
                         .resizable()
@@ -28,17 +28,11 @@ struct ImageUploadView: View {
                 Button("画像をアップロードする") {
                     viewModel.uploadImage()
                 }
+                .disabled(viewModel.selectedImageData == nil) // 画像が選択されていない場合は無効化
 
                 // アップロードされた画像のリスト表示
-                List(viewModel.uploadedImages) { uploadedImage in
-                    if let url = URL(string: uploadedImage.url),
-                       let imageData = try? Data(contentsOf: url),
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 100)
-                    }
+                List(viewModel.ramens) { ramen in
+                    RamenRow(ramen: ramen)
                 }
             }
             .navigationTitle("画像追加テストApp")
@@ -57,13 +51,11 @@ struct ImageUploadView: View {
 }
 
 
-
 struct RamenRow: View {
     let ramen: Ramen
 
     var body: some View {
         HStack {
-            // Firebase Storageから取得した画像URLを使用して画像を表示
             if let imageUrl = ramen.imageUrl, let url = URL(string: imageUrl), let imageData = try? Data(contentsOf: url), let uiImage = UIImage(data: imageData) {
                 Image(uiImage: uiImage)
                     .resizable()
@@ -83,6 +75,7 @@ struct RamenRow: View {
         }
     }
 }
+
 
 
 struct ImagePicker: UIViewControllerRepresentable {

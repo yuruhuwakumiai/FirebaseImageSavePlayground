@@ -9,8 +9,6 @@ import SwiftUI
 
 class RamenViewModel: ObservableObject {
     @Published private var model = RamenModel()
-    @Published var uploadedImages: [UploadedImage] = [] // アップロードされた画像のURLを保持する
-
 
     // ラーメンのリストをビューに提供する
     var ramens: [Ramen] {
@@ -35,7 +33,6 @@ class RamenViewModel: ObservableObject {
     }
 
     // ユーザーが選択した画像データを受け取り、Firebase Storageにアップロードする
-    // RamenViewModel内
     func uploadImage() {
         guard let imageData = model.selectedImageData else { return }
 
@@ -43,14 +40,17 @@ class RamenViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let url):
-                    // アップロードされた画像のURLをリストに追加
-                    self?.uploadedImages.append(UploadedImage(url: url))
+                    // アップロードされた画像URLを持つ新しいRamenインスタンスを作成
+                    self?.addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
                 case .failure(let error):
-                    // エラーハンドリング
                     print("Image upload failed: \(error.localizedDescription)")
                 }
             }
         }
+    }
+
+    func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
+        model.addRamen(name: name, shop: shop, rating: rating, imageUrl: imageUrl)
     }
 
     private func handleImageUploadSuccess(_ imageUrl: String) {
@@ -62,11 +62,6 @@ class RamenViewModel: ObservableObject {
     private func handleImageUploadFailure(_ error: Error) {
         print("Image upload failed: \(error.localizedDescription)")
         // 必要に応じてエラー処理を行います。例えば、ユーザーにエラーメッセージを表示するなどです。
-    }
-
-    // ラーメンのデータを追加する
-    func addRamen(name: String, shop: String, rating: Int) {
-        model.addRamen(name: name, shop: shop, rating: rating, imageUrl: nil) // 画像URLは後でアップロード成功時にセット
     }
 
     // 特定のラーメンをリストから削除する

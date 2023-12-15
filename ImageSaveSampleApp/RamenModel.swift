@@ -16,11 +16,6 @@ struct Ramen: Identifiable {
     var imageUrl: String? // Firebase Storageから取得した画像のURL（まだ画像がない場合はnil）
 }
 
-struct UploadedImage: Identifiable {
-    let id = UUID()
-    let url: String
-}
-
 
 struct RamenModel {
     private var firebaseStorageRepository = FirebaseStorageRepository() // インスタンスしてリポジトリを使用する
