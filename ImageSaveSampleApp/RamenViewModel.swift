@@ -10,6 +10,7 @@ import SwiftUI
 class RamenViewModel: ObservableObject {
     @Published private var model = RamenModel()
 
+    // MARK: ここでプロパティを連携させる
     // ラーメンのリストをビューに提供するプロパティ
     var ramens: [Ramen] {
         model.ramens
@@ -24,7 +25,7 @@ class RamenViewModel: ObservableObject {
     // 画像選択ピッカーの表示状態を管理するプロパティ
     var showImagePicker: Bool {
         get { model.showImagePicker }
-        set { model.showImagePicker = newValue }
+    set { model.showImagePicker = newValue }
     }
 
     // 選択された画像データにアクセスするプロパティ
@@ -33,23 +34,37 @@ class RamenViewModel: ObservableObject {
         set { model.selectedImageData = newValue }
     }
 
+    // アップロード完了の状態をビューに提供するプロパティ
+    var isUploadCompleted: Bool {
+        get { model.isUploadCompleted }
+        set { model.isUploadCompleted = newValue }
+    }
+
+    // アップロードされた時のアラートを出す変数
+    var showAlert: Bool {
+        get { model.showAlert }
+        set { model.showAlert = newValue }
+    }
+
     // 選択された画像をFirebase Storageにアップロードするメソッド
+    // 画像アップロードのメソッド（更新）
     func uploadImage() {
-        guard let imageData = model.selectedImageData else { return }
+        guard let imageData = selectedImageData else { return }
 
         model.uploadImage(imageData) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let url):
-                    // アップロード成功時に画像URLを含む新しいRamenインスタンスを追加
+                    // 成功時の処理
                     self?.addRamenWithImage(url: url)
                 case .failure(let error):
-                    // アップロード失敗時のエラー処理
+                    // 失敗時の処理
                     self?.handleError(error)
                 }
             }
         }
     }
+
 
     // アップロードされた画像URLを含む新しいRamenインスタンスを追加するメソッド
     private func addRamenWithImage(url: String) {

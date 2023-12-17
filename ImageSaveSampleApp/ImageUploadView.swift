@@ -14,7 +14,7 @@ struct ImageUploadView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                // 選択された画像のプレビュー
+                // 画像が選択されていれば表示、そうでなければプレースホルダーを表示
                 if let imageData = viewModel.selectedImageData, let image = UIImage(data: imageData) {
                     Image(uiImage: image)
                         .resizable()
@@ -22,35 +22,44 @@ struct ImageUploadView: View {
                         .frame(height: 300)
                 } else {
                     Text("画像を選択してください")
+                        .frame(height: 300)
+                        .background(Color.gray.opacity(0.3))
+                        .cornerRadius(10)
                 }
 
-                // 画像をアップロードするボタン
+                // 画像アップロードボタン
                 Button("画像をアップロードする") {
                     viewModel.uploadImage()
                 }
-                .disabled(viewModel.selectedImageData == nil) // 画像が選択されていない場合は無効化
+                .disabled(viewModel.selectedImageData == nil)
 
-                // アップロードされた画像のリスト表示
+                // アップロードされた画像のリスト表示（サンプル）
                 List(viewModel.ramens) { ramen in
-                    RamenRow(ramen: ramen)
+                    Text(ramen.name)
                 }
             }
-            .navigationTitle("画像追加テストApp")
-            .navigationBarItems(
-                leading: Button(action: {
-                    viewModel.showImagePicker = true // 画像選択ピッカーを表示
-                }) {
-                    Text("画像を選択")
-                }
-            )
+            .navigationTitle("画像アップロード")
+            .navigationBarItems(trailing: Button("画像を選択") {
+                viewModel.showImagePicker = true
+            })
             .sheet(isPresented: $viewModel.showImagePicker) {
                 ImagePicker(imageData: $viewModel.selectedImageData)
             }
         }
+        // アップロード完了時のアラート表示
+        .onReceive($viewModel.isUploadCompleted) { completed in
+            viewModel.showAlert = completed
+        }
+        // アラートの定義
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text("アップロード完了"),
+                message: Text("画像のアップロードが完了しました。"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 }
-
-
 struct RamenRow: View {
     let ramen: Ramen
 

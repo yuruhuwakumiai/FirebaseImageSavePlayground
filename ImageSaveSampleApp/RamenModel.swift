@@ -16,16 +16,20 @@ struct Ramen: Identifiable {
     var imageUrl: String? // Firebase Storageから取得した画像のURL（まだ画像がない場合はnil）
 }
 
-
 struct RamenModel {
-    // インスタンスしてリポジトリを使用する
+    // firebaseをインスタンスしてリポジトリを使用する
     private var firebaseStorageRepository = FirebaseStorageRepository()
+
     private(set) var ramens: [Ramen] = []
 
     // MARK: 変数はここに追加
     var isPresentingAddView = false
     var showImagePicker = false
     var selectedImageData: Data?
+    // アップロード完了の状態を示すプロパティ
+    var isUploadCompleted = false
+    // アップロードされた時のメッセージを出すフラグ
+    var showAlert = false
 
     // MARK: 関数はここに追加
     // Firebase Storageに画像データをアップロードし、URLを取得する
