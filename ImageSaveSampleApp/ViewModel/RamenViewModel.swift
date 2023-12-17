@@ -65,7 +65,6 @@ class RamenViewModel: ObservableObject {
         }
     }
 
-
     // アップロードされた画像URLを含む新しいRamenインスタンスを追加するメソッド
     private func addRamenWithImage(url: String) {
         addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)

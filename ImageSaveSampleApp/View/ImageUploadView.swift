@@ -60,6 +60,7 @@ struct ImageUploadView: View {
         }
     }
 }
+
 struct RamenRow: View {
     let ramen: Ramen
 
@@ -84,8 +85,6 @@ struct RamenRow: View {
         }
     }
 }
-
-
 
 struct ImagePicker: UIViewControllerRepresentable {
     @Binding var imageData: Data?
@@ -118,7 +117,6 @@ struct ImagePicker: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
 }
-
 
 struct ImageUploadView_Previews: PreviewProvider {
     static var previews: some View {
