@@ -78,21 +78,22 @@ struct RamenRowView: View {
                         .overlay(Circle().stroke(Color.white, lineWidth: 2)) // 白い枠線を追加
                         .shadow(radius: 3) // 影を追加
                 } else {
-                    Image(systemName: "photo") // プレースホルダー画像
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
+                    emptyStateImageView()
                 }
             }
         } else {
-            Image(systemName: "photo") // URLがない場合のプレースホルダー画像
-                .resizable()
-                .scaledToFit()
-                .frame(width: 50, height: 50)
-                .clipShape(Circle())
+            emptyStateImageView()
         }
         // 他のラーメン情報の表示
+    }
+    
+    @ViewBuilder
+    private func emptyStateImageView() -> some View {
+        Image(systemName: "photo") // URLがない場合のプレースホルダー画像
+            .resizable()
+            .scaledToFit()
+            .frame(width: 50, height: 50)
+            .clipShape(Circle())
     }
 }
 
