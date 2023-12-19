@@ -8,38 +8,16 @@
 import SwiftUI
 import FirebaseStorage
 
-// IMO: - 私なら、Viewで分けずに、ViewBuilderで分けますね。
 struct ImageUploadView: View {
     @StateObject private var viewModel = RamenViewModel()
 
     var body: some View {
         NavigationStack {
             VStack {
-                // 画像が選択されていれば表示、そうでなければプレースホルダーを表示
-                if let imageData = viewModel.selectedImageData, 
-                    let image = UIImage(data: imageData) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 300)
-                } else {
-                    Text("画像を選択してください")
-                        .frame(height: 300)
-                        .background(Color.gray.opacity(0.3))
-                        .cornerRadius(10)
-                }
+                uploadImageView()
+                uploadButtonView()
+                ramenListView()
 
-                // 画像アップロードボタン
-                Button("画像をアップロードする") {
-                    viewModel.uploadImage()
-                }
-                .disabled(viewModel.uploadImageButtonDisabled)
-
-                // アップロードされた画像のリスト表示（サンプル）
-                List(viewModel.ramens) { ramen in
-                    RamenRowView(ramen: ramen)
-//                    Text(ramen.name)
-                }
             }
             .navigationTitle("画像アップロード")
             // TODO: - この書き方は非推奨。Toolbarを使いましょう。
@@ -60,12 +38,43 @@ struct ImageUploadView: View {
             }
         }
     }
-}
-
-struct RamenRowView: View {
-    let ramen: Ramen
     
-    var body: some View {
+    @ViewBuilder
+    private func uploadImageView() -> some View {
+        // 画像が選択されていれば表示、そうでなければプレースホルダーを表示
+        if let imageData = viewModel.selectedImageData,
+            let image = UIImage(data: imageData) {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+        } else {
+            Text("画像を選択してください")
+                .frame(height: 300)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(10)
+        }
+    }
+    
+    /// 画像アップロードボタン
+    @ViewBuilder
+    private func uploadButtonView() -> some View {
+        Button("画像をアップロードする") {
+            viewModel.uploadImage()
+        }
+        .disabled(viewModel.uploadImageButtonDisabled)
+    }
+    
+    /// アップロードされた画像のリスト表示（サンプル）
+    @ViewBuilder
+    private func ramenListView() -> some View {
+        List(viewModel.ramens) { ramen in
+            ramenCellView(ramen)
+        }
+    }
+    
+    @ViewBuilder
+    private func ramenCellView(_ ramen: Ramen) -> some View {
         if let imageUrl = ramen.imageUrl,
            let url = URL(string: imageUrl) {
             AsyncImage(url: url) { phase in
@@ -87,9 +96,10 @@ struct RamenRowView: View {
         // 他のラーメン情報の表示
     }
     
+    /// URLがない場合のプレースホルダー画像
     @ViewBuilder
     private func emptyStateImageView() -> some View {
-        Image(systemName: "photo") // URLがない場合のプレースホルダー画像
+        Image(systemName: "photo")
             .resizable()
             .scaledToFit()
             .frame(width: 50, height: 50)
