@@ -29,6 +29,7 @@ struct RamenModel {
     }
 
     /// 新しいラーメンのインスタンスを作成し、リストに追加する
+    // TODO: ここname、shop、rating、imageUrlひとつひとつもらっているが、ViewModel側で、Ramen型を作成して、Ramen型で受け取れば良いのでは？
     mutating func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
         let newRamen = Ramen(name: name, shop: shop, rating: rating, imageUrl: imageUrl)
         ramens.append(newRamen)
