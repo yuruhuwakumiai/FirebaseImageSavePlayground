@@ -53,5 +53,9 @@ struct RamenModel {
     mutating func toggleAddRamenView() {
         isPresentingAddView.toggle()
     }
+    
+    mutating func toggleShowImagePicker() {
+        showImagePicker = true
+    }
 
 }
