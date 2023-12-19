@@ -15,7 +15,8 @@ struct ImageUploadView: View {
         NavigationStack {
             VStack {
                 // 画像が選択されていれば表示、そうでなければプレースホルダーを表示
-                if let imageData = viewModel.selectedImageData, let image = UIImage(data: imageData) {
+                if let imageData = viewModel.selectedImageData, 
+                    let image = UIImage(data: imageData) {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
@@ -92,38 +93,6 @@ struct RamenRow: View {
             // 他のラーメン情報の表示
         }
     }
-}
-
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var imageData: Data?
-
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        return picker
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let image = info[.originalImage] as? UIImage {
-                parent.imageData = image.jpegData(compressionQuality: 0.5)
-            }
-
-            picker.dismiss(animated: true)
-        }
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
 }
 
 struct ImageUploadView_Previews: PreviewProvider {

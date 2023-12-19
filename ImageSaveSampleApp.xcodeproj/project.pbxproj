@@ -17,6 +17,7 @@
 		09BAA3F32B290F0C00DC7DFE /* RamenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BAA3F22B290F0C00DC7DFE /* RamenModel.swift */; };
 		09BAA3F52B29137300DC7DFE /* RamenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BAA3F42B29137300DC7DFE /* RamenViewModel.swift */; };
 		09BAA3F92B29CA1100DC7DFE /* ImageUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BAA3F82B29CA1100DC7DFE /* ImageUploadView.swift */; };
+		A8FB1F4F2B31673700AE82BF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1F4E2B31673700AE82BF /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		09BAA3F22B290F0C00DC7DFE /* RamenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamenModel.swift; sourceTree = "<group>"; };
 		09BAA3F42B29137300DC7DFE /* RamenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamenViewModel.swift; sourceTree = "<group>"; };
 		09BAA3F82B29CA1100DC7DFE /* ImageUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadView.swift; sourceTree = "<group>"; };
+		A8FB1F4E2B31673700AE82BF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				09A4A4972B2F21FE008F9E54 /* View */,
 				09A4A4962B2F21F5008F9E54 /* ViewModel */,
 				094A83542B21A3DE00C66677 /* Assets.xcassets */,
+				A8FB1F4D2B31672200AE82BF /* Helper */,
 				09BAA3EE2B27E04700DC7DFE /* GoogleService-Info.plist */,
 				094A83562B21A3DE00C66677 /* Preview Content */,
 			);
@@ -121,6 +124,14 @@
 				09BAA3F02B290EB400DC7DFE /* FirebaseStorageRepository.swift */,
 			);
 			path = Repository;
+			sourceTree = "<group>";
+		};
+		A8FB1F4D2B31672200AE82BF /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				A8FB1F4E2B31673700AE82BF /* ImagePicker.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +215,7 @@
 				09BAA3F12B290EB400DC7DFE /* FirebaseStorageRepository.swift in Sources */,
 				094A83512B21A3DC00C66677 /* ImageSaveSampleAppApp.swift in Sources */,
 				09BAA3F92B29CA1100DC7DFE /* ImageUploadView.swift in Sources */,
+				A8FB1F4F2B31673700AE82BF /* ImagePicker.swift in Sources */,
 				09BAA3F52B29137300DC7DFE /* RamenViewModel.swift in Sources */,
 				09BAA3F32B290F0C00DC7DFE /* RamenModel.swift in Sources */,
 			);
