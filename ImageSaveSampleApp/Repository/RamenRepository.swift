@@ -13,6 +13,7 @@ class RamenRepository {
 
     func uploadImageData(_ imageData: Data, completion: @escaping (Result<String, Error>) -> Void) {
         let imageId = UUID().uuidString
+        // TODO: ここにユーザーの情報(UUID)も入れたい。
         let imageRef = storageRef.child("images/\(imageId).jpg")
 
         imageRef.putData(imageData, metadata: nil) { metadata, error in
@@ -61,6 +62,4 @@ class RamenRepository {
             }
         }
     }
-
 }
-
