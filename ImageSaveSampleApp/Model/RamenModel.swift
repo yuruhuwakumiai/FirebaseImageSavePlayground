@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  RamenModel.swift
 //  ImageSaveSampleApp
 //
 //  Created by 橋元雄太郎 on 2023/12/13.
