@@ -42,9 +42,9 @@ class RamenViewModel: ObservableObject {
     }
 
     /// アップロードされた時のアラートを出す変数
-    var showAlert: Bool {
-        get { model.showAlert }
-        set { model.showAlert = newValue }
+    var isShownAlert: Bool {
+        get { model.isShownAlert }
+        set { model.isShownAlert = newValue }
     }
 
     /// 選択された画像をFirebase Storageにアップロードするメソッド
@@ -69,7 +69,7 @@ class RamenViewModel: ObservableObject {
     private func addRamenWithImage(url: String) {
         // ここで 'name' と 'shop' に実際の値を設定する
         addRamen(imageUrl: url)
-        model.toggleShowAlert()
+        model.toggleIsShownAlert()
     }
 
     /// アップロードやその他の処理で発生したエラーを処理するメソッド

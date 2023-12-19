@@ -19,7 +19,7 @@ struct RamenModel {
     /// アップロード完了の状態を示すプロパティ
     var isUploadCompleted = false
     /// アップロードされた時のメッセージを出すフラグ
-    var showAlert = false
+    var isShownAlert = false
 
     // MARK: 関数はここに追加
     
@@ -50,7 +50,7 @@ struct RamenModel {
         showImagePicker = true
     }
     
-    mutating func toggleShowAlert() {
-        showAlert = true
+    mutating func toggleIsShownAlert() {
+        isShownAlert = true
     }
 }
