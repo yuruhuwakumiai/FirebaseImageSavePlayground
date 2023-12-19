@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct RamenModel {
-    /// firebaseをインスタンスしてリポジトリを使用する
-    private var firebaseStorageRepository = FirebaseStorageRepository()
-    
-    private var ramens: [Ramen] = []
+    // firebaseをインスタンスしてリポジトリを使用する
+    private var ramenRepository = RamenRepository()
+    private(set) var ramens: [Ramen] = []
 
     var isPresentingAddView = false
     var showImagePicker = false
@@ -25,7 +24,7 @@ struct RamenModel {
     
     /// Firebase Storageに画像データをアップロードし、URLを取得する
     mutating func uploadImage(_ imageData: Data, completion: @escaping (Result<String, Error>) -> Void) {
-        firebaseStorageRepository.uploadImageData(imageData, completion: completion)
+        ramenRepository.uploadImageData(imageData, completion: completion)
     }
 
     /// 新しいラーメンのインスタンスを作成し、リストに追加する
