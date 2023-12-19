@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import FirebaseStorage
 
 struct ImageUploadView: View {
     @StateObject private var viewModel = RamenViewModel()
