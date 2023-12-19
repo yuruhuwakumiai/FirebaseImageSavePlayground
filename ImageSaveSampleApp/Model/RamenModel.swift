@@ -6,12 +6,11 @@
 //
 
 import SwiftUI
-import FirebaseStorage
 
 struct RamenModel {
     // firebaseをインスタンスしてリポジトリを使用する
     private var firebaseStorageRepository = FirebaseStorageRepository()
-    private(set) var ramens: [Ramen] = []
+    private var ramens: [Ramen] = []
 
     // MARK: 変数はここに追加
     var isPresentingAddView = false
