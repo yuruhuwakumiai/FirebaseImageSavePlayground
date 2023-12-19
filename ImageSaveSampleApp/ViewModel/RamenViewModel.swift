@@ -69,7 +69,7 @@ class RamenViewModel: ObservableObject {
     private func addRamenWithImage(url: String) {
         // ここで 'name' と 'shop' に実際の値を設定する
         addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
-        showAlert = true  // アップロード成功時にアラート表示フラグをtrueに設定
+        model.toggleShowAlert()
     }
 
     /// アップロードやその他の処理で発生したエラーを処理するメソッド
