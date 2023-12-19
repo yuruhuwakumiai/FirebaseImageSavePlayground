@@ -48,6 +48,7 @@ class RamenViewModel: ObservableObject {
 
     // 選択された画像をFirebase Storageにアップロードするメソッド
     // 画像アップロードのメソッド（更新）
+    // 画像アップロードのメソッド
     func uploadImage() {
         guard let imageData = selectedImageData else { return }
 
@@ -55,18 +56,19 @@ class RamenViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let url):
-                    // 成功時の処理
                     self?.addRamenWithImage(url: url)
+                    self?.showAlert = true  // アップロード成功時にアラート表示フラグをtrueに設定
                 case .failure(let error):
-                    // 失敗時の処理
                     self?.handleError(error)
                 }
             }
         }
     }
 
+
     // アップロードされた画像URLを含む新しいRamenインスタンスを追加するメソッド
     private func addRamenWithImage(url: String) {
+        // ここで 'name' と 'shop' に実際の値を設定する
         addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
     }
 

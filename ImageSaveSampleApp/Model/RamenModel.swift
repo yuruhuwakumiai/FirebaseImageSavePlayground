@@ -19,7 +19,6 @@ struct Ramen: Identifiable {
 struct RamenModel {
     // firebaseをインスタンスしてリポジトリを使用する
     private var firebaseStorageRepository = FirebaseStorageRepository()
-
     private(set) var ramens: [Ramen] = []
 
     // MARK: 変数はここに追加
@@ -54,4 +53,5 @@ struct RamenModel {
     mutating func toggleAddRamenView() {
         isPresentingAddView.toggle()
     }
+
 }

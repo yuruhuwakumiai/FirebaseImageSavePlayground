@@ -35,7 +35,8 @@ struct ImageUploadView: View {
 
                 // アップロードされた画像のリスト表示（サンプル）
                 List(viewModel.ramens) { ramen in
-                    Text(ramen.name)
+                    RamenRow(ramen: ramen)
+//                    Text(ramen.name)
                 }
             }
             .navigationTitle("画像アップロード")
@@ -45,10 +46,6 @@ struct ImageUploadView: View {
             .sheet(isPresented: $viewModel.showImagePicker) {
                 ImagePicker(imageData: $viewModel.selectedImageData)
             }
-        }
-        // アップロード完了時のアラート表示
-        .onReceive($viewModel.isUploadCompleted) { completed in
-            viewModel.showAlert = completed
         }
         // アラートの定義
         .alert(isPresented: $viewModel.showAlert) {
@@ -66,20 +63,29 @@ struct RamenRow: View {
 
     var body: some View {
         HStack {
-            if let imageUrl = ramen.imageUrl, let url = URL(string: imageUrl), let imageData = try? Data(contentsOf: url), let uiImage = UIImage(data: imageData) {
-                Image(uiImage: uiImage)
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                    .shadow(radius: 7)
+            if let imageUrl = ramen.imageUrl, let url = URL(string: imageUrl) {
+                AsyncImage(url: url) { phase in
+                    if let image = phase.image {
+                        image.resizable() // 画像をリサイズ可能にする
+                            .scaledToFit() // アスペクト比を維持してフィットさせる
+                            .frame(width: 50, height: 50) // 画像のサイズ指定
+                            .clipShape(Circle()) // 円形にクリップ
+                            .overlay(Circle().stroke(Color.white, lineWidth: 2)) // 白い枠線を追加
+                            .shadow(radius: 3) // 影を追加
+                    } else {
+                        Image(systemName: "photo") // プレースホルダー画像
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 50, height: 50)
+                            .clipShape(Circle())
+                    }
+                }
             } else {
-                Image(systemName: "photo")
+                Image(systemName: "photo") // URLがない場合のプレースホルダー画像
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .scaledToFit()
+                    .frame(width: 50, height: 50)
                     .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.white, lineWidth: 4))
-                    .shadow(radius: 7)
             }
             // 他のラーメン情報の表示
         }

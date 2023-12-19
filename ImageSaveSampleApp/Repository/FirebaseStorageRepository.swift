@@ -8,8 +8,6 @@
 import SwiftUI
 import FirebaseStorage
 
-import FirebaseStorage
-
 class FirebaseStorageRepository {
     private let storageRef = Storage.storage().reference(forURL: "gs://imagesavesampleapp.appspot.com")
 
@@ -32,5 +30,37 @@ class FirebaseStorageRepository {
             }
         }
     }
+
+    func fetchImageURLs(completion: @escaping (Result<[String], Error>) -> Void) {
+        storageRef.child("images").listAll { (result, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            guard let result = result else {
+                completion(.failure(NSError(domain: "FirebaseStorageError", code: -1, userInfo: [NSLocalizedDescriptionKey: "No result found"])))
+                return
+            }
+
+            let group = DispatchGroup()
+            var urls: [String] = []
+
+            for item in result.items {
+                group.enter()
+                item.downloadURL { url, error in
+                    if let url = url {
+                        urls.append(url.absoluteString)
+                    }
+                    group.leave()
+                }
+            }
+
+            group.notify(queue: .main) {
+                completion(.success(urls))
+            }
+        }
+    }
+
 }
 
