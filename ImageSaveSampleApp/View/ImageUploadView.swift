@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseStorage
 
+// IMO: - 私なら、Viewで分けずに、ViewBuilderで分けますね。
 struct ImageUploadView: View {
     @StateObject private var viewModel = RamenViewModel()
 
