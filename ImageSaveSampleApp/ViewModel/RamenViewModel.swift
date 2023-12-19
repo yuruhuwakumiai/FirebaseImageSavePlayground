@@ -15,6 +15,10 @@ class RamenViewModel: ObservableObject {
     var ramens: [Ramen] {
         model.ramens
     }
+    
+    var uploadImageButtonDisabled: Bool {
+        return selectedImageData == nil
+    }
 
     // ラーメン追加ビューの表示状態を管理するプロパティ
     var isPresentingAddView: Bool {

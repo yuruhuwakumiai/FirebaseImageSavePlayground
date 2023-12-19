@@ -31,7 +31,7 @@ struct ImageUploadView: View {
                 Button("画像をアップロードする") {
                     viewModel.uploadImage()
                 }
-                .disabled(viewModel.selectedImageData == nil)
+                .disabled(viewModel.uploadImageButtonDisabled)
 
                 // アップロードされた画像のリスト表示（サンプル）
                 List(viewModel.ramens) { ramen in
