@@ -18,6 +18,7 @@
 		09BAA3F52B29137300DC7DFE /* RamenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BAA3F42B29137300DC7DFE /* RamenViewModel.swift */; };
 		09BAA3F92B29CA1100DC7DFE /* ImageUploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BAA3F82B29CA1100DC7DFE /* ImageUploadView.swift */; };
 		A8FB1F4F2B31673700AE82BF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1F4E2B31673700AE82BF /* ImagePicker.swift */; };
+		A8FB1F512B316FF800AE82BF /* Ramen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FB1F502B316FF800AE82BF /* Ramen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		09BAA3F42B29137300DC7DFE /* RamenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamenViewModel.swift; sourceTree = "<group>"; };
 		09BAA3F82B29CA1100DC7DFE /* ImageUploadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadView.swift; sourceTree = "<group>"; };
 		A8FB1F4E2B31673700AE82BF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		A8FB1F502B316FF800AE82BF /* Ramen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ramen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				09BAA3F22B290F0C00DC7DFE /* RamenModel.swift */,
+				A8FB1F502B316FF800AE82BF /* Ramen.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 				09BAA3F12B290EB400DC7DFE /* RamenRepository.swift in Sources */,
 				094A83512B21A3DC00C66677 /* ImageSaveSampleAppApp.swift in Sources */,
 				09BAA3F92B29CA1100DC7DFE /* ImageUploadView.swift in Sources */,
+				A8FB1F512B316FF800AE82BF /* Ramen.swift in Sources */,
 				A8FB1F4F2B31673700AE82BF /* ImagePicker.swift in Sources */,
 				09BAA3F52B29137300DC7DFE /* RamenViewModel.swift in Sources */,
 				09BAA3F32B290F0C00DC7DFE /* RamenModel.swift in Sources */,
