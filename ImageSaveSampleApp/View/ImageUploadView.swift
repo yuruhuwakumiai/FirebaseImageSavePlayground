@@ -36,7 +36,7 @@ struct ImageUploadView: View {
 
                 // アップロードされた画像のリスト表示（サンプル）
                 List(viewModel.ramens) { ramen in
-                    RamenRow(ramen: ramen)
+                    RamenRowView(ramen: ramen)
 //                    Text(ramen.name)
                 }
             }
@@ -61,37 +61,37 @@ struct ImageUploadView: View {
     }
 }
 
-struct RamenRow: View {
+struct RamenRowView: View {
     let ramen: Ramen
-
+    
     var body: some View {
-        HStack {
-            if let imageUrl = ramen.imageUrl, let url = URL(string: imageUrl) {
-                AsyncImage(url: url) { phase in
-                    if let image = phase.image {
-                        image.resizable() // 画像をリサイズ可能にする
-                            .scaledToFit() // アスペクト比を維持してフィットさせる
-                            .frame(width: 50, height: 50) // 画像のサイズ指定
-                            .clipShape(Circle()) // 円形にクリップ
-                            .overlay(Circle().stroke(Color.white, lineWidth: 2)) // 白い枠線を追加
-                            .shadow(radius: 3) // 影を追加
-                    } else {
-                        Image(systemName: "photo") // プレースホルダー画像
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 50, height: 50)
-                            .clipShape(Circle())
-                    }
+        if let imageUrl = ramen.imageUrl,
+           let url = URL(string: imageUrl) {
+            AsyncImage(url: url) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable() // 画像をリサイズ可能にする
+                        .scaledToFit() // アスペクト比を維持してフィットさせる
+                        .frame(width: 50, height: 50) // 画像のサイズ指定
+                        .clipShape(Circle()) // 円形にクリップ
+                        .overlay(Circle().stroke(Color.white, lineWidth: 2)) // 白い枠線を追加
+                        .shadow(radius: 3) // 影を追加
+                } else {
+                    Image(systemName: "photo") // プレースホルダー画像
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
                 }
-            } else {
-                Image(systemName: "photo") // URLがない場合のプレースホルダー画像
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
             }
-            // 他のラーメン情報の表示
+        } else {
+            Image(systemName: "photo") // URLがない場合のプレースホルダー画像
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50)
+                .clipShape(Circle())
         }
+        // 他のラーメン情報の表示
     }
 }
 
