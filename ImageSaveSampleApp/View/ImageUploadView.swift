@@ -106,8 +106,6 @@ struct ImageUploadView: View {
     }
 }
 
-struct ImageUploadView_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageUploadView()
-    }
+#Preview {
+    ImageUploadView()
 }
