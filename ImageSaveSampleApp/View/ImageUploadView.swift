@@ -27,7 +27,7 @@ struct ImageUploadView: View {
                 ImagePicker(imageData: $viewModel.selectedImageData)
             }
             // アラートの定義
-            .alert(isPresented: $viewModel.showAlert) {
+            .alert(isPresented: $viewModel.isShownAlert) {
                 // TODO: - この書き方は非推奨。
                 Alert(
                     title: Text("アップロード完了"),
