@@ -40,6 +40,7 @@ struct ImageUploadView: View {
                 }
             }
             .navigationTitle("画像アップロード")
+            // TODO: - この書き方は非推奨。Toolbarを使いましょう。
             .navigationBarItems(trailing: Button("画像を選択") {
                 viewModel.showImagePicker = true
             })
