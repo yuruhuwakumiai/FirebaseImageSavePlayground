@@ -68,7 +68,7 @@ class RamenViewModel: ObservableObject {
     /// アップロードされた画像URLを含む新しいRamenインスタンスを追加するメソッド
     private func addRamenWithImage(url: String) {
         // ここで 'name' と 'shop' に実際の値を設定する
-        addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
+        addRamen(imageUrl: url)
         model.toggleShowAlert()
     }
 
@@ -78,7 +78,12 @@ class RamenViewModel: ObservableObject {
     }
 
     /// 新しいRamenインスタンスを追加するメソッド
-    private func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
+    private func addRamen(
+        name: String = "New Ramen",
+        shop: String = "Ramen Shop",
+        rating: Int = 5,
+        imageUrl: String? = nil
+    ) {
         model.addRamen(name: name, shop: shop, rating: rating, imageUrl: imageUrl)
     }
 
