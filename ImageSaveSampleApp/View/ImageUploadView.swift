@@ -46,14 +46,15 @@ struct ImageUploadView: View {
             .sheet(isPresented: $viewModel.showImagePicker) {
                 ImagePicker(imageData: $viewModel.selectedImageData)
             }
-        }
-        // アラートの定義
-        .alert(isPresented: $viewModel.showAlert) {
-            Alert(
-                title: Text("アップロード完了"),
-                message: Text("画像のアップロードが完了しました。"),
-                dismissButton: .default(Text("OK"))
-            )
+            // アラートの定義
+            .alert(isPresented: $viewModel.showAlert) {
+                // TODO: - この書き方は非推奨。
+                Alert(
+                    title: Text("アップロード完了"),
+                    message: Text("画像のアップロードが完了しました。"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
     }
 }
