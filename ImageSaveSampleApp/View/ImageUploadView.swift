@@ -37,7 +37,7 @@ struct ImageUploadView: View {
 
                 // アップロードされた画像のリスト表示（サンプル）
                 List(viewModel.ramens) { ramen in
-                    RamenRow(ramen: ramen)
+                    RamenRowView(ramen: ramen)
 //                    Text(ramen.name)
                 }
             }
@@ -66,7 +66,7 @@ struct ImageUploadView: View {
     }
 }
 
-struct RamenRow: View {
+struct RamenRowView: View {
     let ramen: Ramen
 
     var body: some View {
