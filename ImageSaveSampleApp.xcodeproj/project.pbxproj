@@ -12,6 +12,7 @@
 		094A83582B21A3DE00C66677 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 094A83572B21A3DE00C66677 /* Preview Assets.xcassets */; };
 		094A83602B21FDD700C66677 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 094A835F2B21FDD700C66677 /* FirebaseDatabase */; };
 		094A83622B21FDD700C66677 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 094A83612B21FDD700C66677 /* FirebaseStorage */; };
+		097996012B323F5D001EC17B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097996002B323F5D001EC17B /* ImagePicker.swift */; };
 		09BAA3EF2B27E04700DC7DFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 09BAA3EE2B27E04700DC7DFE /* GoogleService-Info.plist */; };
 		09BAA3F12B290EB400DC7DFE /* FirebaseStorageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BAA3F02B290EB400DC7DFE /* FirebaseStorageRepository.swift */; };
 		09BAA3F32B290F0C00DC7DFE /* RamenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BAA3F22B290F0C00DC7DFE /* RamenModel.swift */; };
@@ -24,6 +25,7 @@
 		094A83502B21A3DC00C66677 /* ImageSaveSampleAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaveSampleAppApp.swift; sourceTree = "<group>"; };
 		094A83542B21A3DE00C66677 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		094A83572B21A3DE00C66677 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		097996002B323F5D001EC17B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		09BAA3EE2B27E04700DC7DFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		09BAA3F02B290EB400DC7DFE /* FirebaseStorageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageRepository.swift; sourceTree = "<group>"; };
 		09BAA3F22B290F0C00DC7DFE /* RamenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RamenModel.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 		094A834F2B21A3DC00C66677 /* ImageSaveSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				097995FF2B323F37001EC17B /* Helper */,
 				09A4A4992B2F2215008F9E54 /* Repository */,
 				09A4A4982B2F2209008F9E54 /* App */,
 				09A4A4952B2F21EB008F9E54 /* Model */,
@@ -81,6 +84,14 @@
 				094A83572B21A3DE00C66677 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		097995FF2B323F37001EC17B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				097996002B323F5D001EC17B /* ImagePicker.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		09A4A4952B2F21EB008F9E54 /* Model */ = {
@@ -204,6 +215,7 @@
 				09BAA3F12B290EB400DC7DFE /* FirebaseStorageRepository.swift in Sources */,
 				094A83512B21A3DC00C66677 /* ImageSaveSampleAppApp.swift in Sources */,
 				09BAA3F92B29CA1100DC7DFE /* ImageUploadView.swift in Sources */,
+				097996012B323F5D001EC17B /* ImagePicker.swift in Sources */,
 				09BAA3F52B29137300DC7DFE /* RamenViewModel.swift in Sources */,
 				09BAA3F32B290F0C00DC7DFE /* RamenModel.swift in Sources */,
 			);

@@ -15,7 +15,8 @@ struct ImageUploadView: View {
         NavigationStack {
             VStack {
                 // 画像が選択されていれば表示、そうでなければプレースホルダーを表示
-                if let imageData = viewModel.selectedImageData, let image = UIImage(data: imageData) {
+                if let imageData = viewModel.selectedImageData,
+                    let image = UIImage(data: imageData) {
                     Image(uiImage: image)
                         .resizable()
                         .scaledToFit()
@@ -28,10 +29,11 @@ struct ImageUploadView: View {
                 }
 
                 // 画像アップロードボタン
+                // disabledに所定nilが入るようになっている
                 Button("画像をアップロードする") {
                     viewModel.uploadImage()
                 }
-                .disabled(viewModel.selectedImageData == nil)
+                .disabled(viewModel.uploadImageButtonDisabled)
 
                 // アップロードされた画像のリスト表示（サンプル）
                 List(viewModel.ramens) { ramen in
@@ -40,20 +42,26 @@ struct ImageUploadView: View {
                 }
             }
             .navigationTitle("画像アップロード")
-            .navigationBarItems(trailing: Button("画像を選択") {
-                viewModel.showImagePicker = true
-            })
+
+// navigationBarItemsが非推奨になっている 12/19
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("画像を選択") {
+                        viewModel.showImagePicker = true
+                    }
+                }
+            }
             .sheet(isPresented: $viewModel.showImagePicker) {
                 ImagePicker(imageData: $viewModel.selectedImageData)
             }
         }
-        // アラートの定義
-        .alert(isPresented: $viewModel.showAlert) {
-            Alert(
-                title: Text("アップロード完了"),
-                message: Text("画像のアップロードが完了しました。"),
-                dismissButton: .default(Text("OK"))
-            )
+        // アラートの定義　以前の書き方は非推奨になった
+        .alert("アップロード完了", isPresented: $viewModel.showAlert) {
+            // ダイアログ内で行うアクション処理...
+
+        } message: {
+            // アラートのメッセージ...
+            Text("正常にアップロードされました")
         }
     }
 }
@@ -90,38 +98,6 @@ struct RamenRow: View {
             // 他のラーメン情報の表示
         }
     }
-}
-
-struct ImagePicker: UIViewControllerRepresentable {
-    @Binding var imageData: Data?
-
-    func makeUIViewController(context: Context) -> UIImagePickerController {
-        let picker = UIImagePickerController()
-        picker.delegate = context.coordinator
-        return picker
-    }
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-
-    class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-        let parent: ImagePicker
-
-        init(_ parent: ImagePicker) {
-            self.parent = parent
-        }
-
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let image = info[.originalImage] as? UIImage {
-                parent.imageData = image.jpegData(compressionQuality: 0.5)
-            }
-
-            picker.dismiss(animated: true)
-        }
-    }
-
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
 }
 
 struct ImageUploadView_Previews: PreviewProvider {
