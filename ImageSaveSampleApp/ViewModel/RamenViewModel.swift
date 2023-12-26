@@ -29,7 +29,7 @@ class RamenViewModel: ObservableObject {
     // 画像選択ピッカーの表示状態を管理するプロパティ
     var showImagePicker: Bool {
         get { model.showImagePicker }
-    set { model.showImagePicker = newValue }
+        set { model.showImagePicker = newValue }
     }
 
     // 選択された画像データにアクセスするプロパティ
@@ -94,6 +94,10 @@ class RamenViewModel: ObservableObject {
     // ラーメン追加ビューの表示状態を切り替えるメソッド
     func toggleAddRamenView() {
         model.toggleAddRamenView()
+    }
+
+    func toggleShowImagePicker() {
+        model.toggleShowImagePicker()
     }
 }
 
