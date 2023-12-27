@@ -14,36 +14,13 @@ struct ImageUploadView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                // 画像が選択されていれば表示、そうでなければプレースホルダーを表示
-                if let imageData = viewModel.selectedImageData,
-                    let image = UIImage(data: imageData) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 300)
-                } else {
-                    Text("画像を選択してください")
-                        .frame(height: 300)
-                        .background(Color.gray.opacity(0.3))
-                        .cornerRadius(10)
-                }
-
-                // 画像アップロードボタン
-                // disabledに所定nilが入るようになっている
-                Button("画像をアップロードする") {
-                    viewModel.uploadImage()
-                }
-                .disabled(viewModel.uploadImageButtonDisabled)
-
-                // アップロードされた画像のリスト表示（サンプル）
-                List(viewModel.ramens) { ramen in
-                    RamenRowView(ramen: ramen)
-//                    Text(ramen.name)
-                }
+                uploadImageView()
+                uploadButtonView()
+                ramenListView()
             }
             .navigationTitle("画像アップロード")
 
-// navigationBarItemsが非推奨になっている 12/19
+            // navigationBarItemsが非推奨になっている 12/19
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("画像を選択") {
@@ -64,15 +41,48 @@ struct ImageUploadView: View {
             Text("正常にアップロードされました")
         }
     }
-}
 
-// Todo: ViewBuilderで書き換える
-struct RamenRowView: View {
-    let ramen: Ramen
+    @ViewBuilder
+    private func uploadImageView() -> some View {
+        // 画像が選択されていれば表示、そうでなければプレースホルダーを表示
+        if let imageData = viewModel.selectedImageData,
+           let image = UIImage(data: imageData) {
+            Image(uiImage: image)
+                .resizable()
+                .scaledToFit()
+                .frame(height: 300)
+        } else {
+            Text("画像を選択してください")
+                .frame(height: 300)
+                .background(Color.gray.opacity(0.3))
+                .cornerRadius(10)
+        }
+    }
 
-    var body: some View {
+    // 画像アップロードボタン
+    @ViewBuilder
+    private func uploadButtonView() -> some View {
+        // disabledに所定nilが入るようになっている
+        Button("画像をアップロードする") {
+            viewModel.uploadImage()
+        }
+        .disabled(viewModel.uploadImageButtonDisabled)
+    }
+
+    @ViewBuilder
+    private func ramenListView() -> some View {
+        // アップロードされた画像のリスト表示（サンプル）
+        List(viewModel.ramens) { ramen in
+            ramenCellView(ramen)
+        }
+    }
+
+
+    @ViewBuilder
+    private func ramenCellView(_ ramen: Ramen) -> some View {
         HStack {
-            if let imageUrl = ramen.imageUrl, let url = URL(string: imageUrl) {
+            if let imageUrl = ramen.imageUrl,
+               let url = URL(string: imageUrl) {
                 AsyncImage(url: url) { phase in
                     if let image = phase.image {
                         image.resizable() // 画像をリサイズ可能にする
