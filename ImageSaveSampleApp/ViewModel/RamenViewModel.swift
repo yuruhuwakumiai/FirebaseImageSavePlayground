@@ -67,7 +67,7 @@ class RamenViewModel: ObservableObject {
         }
     }
 
-
+    // ファイル内で使用している関数はprivateつける
     /// アップロードされた画像URLを含む新しいRamenインスタンスを追加するメソッド
     private func addRamenWithImage(url: String) {
         // ここで 'name' と 'shop' に実際の値を設定する
@@ -80,12 +80,12 @@ class RamenViewModel: ObservableObject {
     }
 
     /// 新しいRamenインスタンスを追加するメソッド
-    func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
+    private func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
         model.addRamen(name: name, shop: shop, rating: rating, imageUrl: imageUrl)
     }
 
     /// 特定のRamenインスタンスをリストから削除するメソッド
-    func removeRamen(at offsets: IndexSet) {
+    private func removeRamen(at offsets: IndexSet) {
         model.removeRamens(at: offsets)
     }
 
