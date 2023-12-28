@@ -77,7 +77,6 @@ struct ImageUploadView: View {
         }
     }
 
-
     @ViewBuilder
     private func ramenCellView(_ ramen: Ramen) -> some View {
         HStack {
@@ -117,3 +116,8 @@ struct ImageUploadView_Previews: PreviewProvider {
         ImageUploadView()
     }
 }
+
+//TODO: Xcode15からこれでいける　versionあげる
+//#Preview {
+//    ImageUploadView()
+//}
