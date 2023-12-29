@@ -57,4 +57,8 @@ struct RamenModel {
     mutating func toggleShowImagePicker() {
         showImagePicker = true
     }
+
+    mutating func toggleShowAlert() {
+        showAlert = true
+    }
 }

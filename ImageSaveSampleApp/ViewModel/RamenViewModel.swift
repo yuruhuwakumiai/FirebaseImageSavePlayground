@@ -59,7 +59,6 @@ class RamenViewModel: ObservableObject {
                 switch result {
                 case .success(let url):
                     self?.addRamenWithImage(url: url)
-                    self?.showAlert = true  // アップロード成功時にアラート表示フラグをtrueに設定
                 case .failure(let error):
                     self?.handleError(error)
                 }
@@ -72,6 +71,8 @@ class RamenViewModel: ObservableObject {
     private func addRamenWithImage(url: String) {
         // ここで 'name' と 'shop' に実際の値を設定する
         addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
+        // アップロード成功時にアラート表示フラグをtrueに設定
+        model.toggleShowAlert()
     }
 
     /// アップロードやその他の処理で発生したエラーを処理するメソッド
