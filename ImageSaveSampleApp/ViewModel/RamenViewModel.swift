@@ -44,8 +44,8 @@ class RamenViewModel: ObservableObject {
 
     /// アップロードされた時のアラートを出す変数
     var showAlert: Bool {
-        get { model.showAlert }
-        set { model.showAlert = newValue }
+        get { model.isShowAlert }
+        set { model.isShowAlert = newValue }
     }
 
     /// 選択された画像をFirebase Storageにアップロードするメソッド
@@ -72,7 +72,7 @@ class RamenViewModel: ObservableObject {
 
         addRamen(imageUrl: url)
         // アップロード成功時にアラート表示フラグをtrueに設定
-        model.toggleShowAlert()
+        model.toggleIsShowAlert()
     }
 
     /// アップロードやその他の処理で発生したエラーを処理するメソッド

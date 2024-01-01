@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  RamenModel.swift
 //  ImageSaveSampleApp
 //
 //  Created by 橋元雄太郎 on 2023/12/13.
@@ -19,7 +19,7 @@ struct RamenModel {
     // アップロード完了の状態を示すプロパティ
     var isUploadCompleted = false
     // アップロードされた時のメッセージを出すフラグ
-    var showAlert = false
+    var isShowAlert = false
 
     // MARK: 関数はここに追加
     /// Firebase Storageに画像データをアップロードし、URLを取得する
@@ -28,6 +28,7 @@ struct RamenModel {
     }
 
     /// 新しいラーメンのインスタンスを作成し、リストに追加する
+    /// TODO: ここname、shop、rating、imageUrlひとつひとつもらっているが、ViewModel側で、Ramen型を作成して、Ramen型で受け取れば良いのでは？
     mutating func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
         let newRamen = Ramen(name: name, shop: shop, rating: rating, imageUrl: imageUrl)
         ramens.append(newRamen)
@@ -49,7 +50,7 @@ struct RamenModel {
         showImagePicker = true
     }
 
-    mutating func toggleShowAlert() {
-        showAlert = true
+    mutating func toggleIsShowAlert() {
+        isShowAlert = true
     }
 }
