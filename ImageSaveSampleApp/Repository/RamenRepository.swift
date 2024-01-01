@@ -1,5 +1,5 @@
 //
-//  FirebaseStorageRepository.swift
+//  RamenRepository.swift
 //  ImageSaveSampleApp
 //
 //  Created by 橋元雄太郎 on 2023/12/13.
@@ -8,7 +8,7 @@
 import SwiftUI
 import FirebaseStorage
 
-class FirebaseStorageRepository {
+class RamenRepository {
     private let storageRef = Storage.storage().reference(forURL: "gs://imagesavesampleapp.appspot.com")
 
     func uploadImageData(_ imageData: Data, completion: @escaping (Result<String, Error>) -> Void) {

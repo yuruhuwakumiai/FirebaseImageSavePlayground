@@ -50,7 +50,6 @@ class RamenViewModel: ObservableObject {
 
     /// 選択された画像をFirebase Storageにアップロードするメソッド
     /// 画像アップロードのメソッド（更新）
-    /// 画像アップロードのメソッド
     func uploadImage() {
         guard let imageData = selectedImageData else { return }
 

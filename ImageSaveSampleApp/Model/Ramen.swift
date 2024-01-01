@@ -15,3 +15,4 @@ struct Ramen: Identifiable {
     var imageUrl: String? // Firebase Storageから取得した画像のURL（まだ画像がない場合はnil）
 }
 
+// まずはここで使用するデータをまとめる。
