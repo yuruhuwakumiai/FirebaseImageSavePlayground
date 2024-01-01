@@ -69,8 +69,8 @@ class RamenViewModel: ObservableObject {
     // ファイル内で使用している関数はprivateつける
     /// アップロードされた画像URLを含む新しいRamenインスタンスを追加するメソッド
     private func addRamenWithImage(url: String) {
-        // ここで 'name' と 'shop' に実際の値を設定する
-        addRamen(name: "New Ramen", shop: "Ramen Shop", rating: 5, imageUrl: url)
+
+        addRamen(imageUrl: url)
         // アップロード成功時にアラート表示フラグをtrueに設定
         model.toggleShowAlert()
     }
@@ -80,8 +80,13 @@ class RamenViewModel: ObservableObject {
         // ここにエラー処理のロジックを実装
     }
 
-    /// 新しいRamenインスタンスを追加するメソッド
-    private func addRamen(name: String, shop: String, rating: Int, imageUrl: String? = nil) {
+    /// 新しいRamenインスタンスを追加するメソッド ※ここあまりよく理解できていない
+    private func addRamen(
+        name: String = "New Ramen",
+        shop: String = "Ramen Shop",
+        rating: Int = 5,
+        imageUrl: String? = nil
+    ) {
         model.addRamen(name: name, shop: shop, rating: rating, imageUrl: imageUrl)
     }
 
